@@ -1,14 +1,14 @@
 import "./global.css";             // 👈 REQUIRED
 
 import React from "react";
-import { Text, View } from "react-native";
+import { store } from './src/store';
+import { Provider } from 'react-redux';
+import AppNavigation from './src/app/navigation';
 
 export default function App() {
   return (
-    <View className="flex-1 items-center justify-center bg-slate-900">
-      <Text className="text-3xl font-bold text-white">
-        Hello Tailwind + Expo 👋
-      </Text>
-    </View>
+    <Provider store={store}>
+      <AppNavigation colorScheme="light" />
+    </Provider>
   );
 }

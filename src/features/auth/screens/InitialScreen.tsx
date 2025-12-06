@@ -1,30 +1,62 @@
-import React, { useEffect } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
-import SplashScreen from 'react-native-splash-screen';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+// If you want to use size-matters:
+// import { ScaledSheet } from 'react-native-size-matters';
 
-type Props = { navigation: any };
+type InitialScreenProps = {
+    navigation: any; // you can type this better with RootStackParamList later
+};
 
-export default function InitialScreen({ navigation }: Props) {
-    useEffect(() => {
-        SplashScreen.hide();
-        const id = setTimeout(() => {
-            // Clear stack so user can't go back to InitialScreen
-            navigation.reset({ index: 0, routes: [{ name: 'OnboardingTour' }] });
-        }, 400);
-
-        // Cleanup: if this screen unmounts before 400ms, cancel the timer
-        return () => clearTimeout(id);
-    }, [navigation]);
-
+const InitialScreen: React.FC<InitialScreenProps> = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            <ActivityIndicator size="large" />
-            <Text style={styles.muted}>Loading…</Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.content}>
+                <Text style={styles.title}>Welcome to btfMedTalk 👋</Text>
+                <Text style={styles.subtitle}>
+                    This is your InitialScreen. Set me as initialRouteName in your navigator.
+                </Text>
+
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => navigation.navigate('Home' as never)} // change 'Home' to any existing screen
+                >
+                    <Text style={styles.buttonText}>Go to Home</Text>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
     );
-}
+};
+
+export default InitialScreen;
 
 const styles = StyleSheet.create({
-    container: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 8 },
-    muted: { color: '#64748b' },
+    container: {
+        flex: 1,
+    },
+    content: {
+        flex: 1,
+        padding: 24,
+        justifyContent: 'center',
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: '700',
+        marginBottom: 12,
+    },
+    subtitle: {
+        fontSize: 16,
+        marginBottom: 24,
+    },
+    button: {
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 8,
+        borderWidth: 1,
+        alignSelf: 'flex-start',
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: '600',
+    },
 });

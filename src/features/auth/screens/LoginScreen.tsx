@@ -11,7 +11,6 @@ import { getProportionalFontSize } from '@/ui/theme/typography';
 import CommonButton from '@/ui/components/CommonButton';
 import { CommonActions } from '@react-navigation/native';
 import { useLoginMutation } from '../api/authApi';
-// import { API_BASE_URL } from '@env';
 
 interface Props {
   navigation: any;
@@ -24,7 +23,6 @@ const LoginScreen: React.FC<Props> = (props) => {
 
   const [login, { isLoading, error }] = useLoginMutation();
 
-  console.log('FINAL URL =', `${API_BASE_URL}/patient-login`);
 
   const handleLogin = async () => {
     props.navigation.dispatch(

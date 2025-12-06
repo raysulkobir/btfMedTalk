@@ -1,30 +1,25 @@
 import React, { useEffect } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
-import SplashScreen from 'react-native-splash-screen';
 
 type Props = { navigation: any };
 
 export default function InitialScreen({ navigation }: Props) {
-    // useEffect(() => {
-        // SplashScreen.hide();
-        // const id = setTimeout(() => {
-            // Clear stack so user can't go back to InitialScreen
-            // navigation.reset({ index: 0, routes: [{ name: 'OnboardingTour' }] });
-        // }, 400);
+    useEffect(() => {
+        // Simulate loading, then navigate
+        const timer = setTimeout(() => {
+            navigation.replace("Home"); // or whatever your first screen is
+        }, 1500);
 
-        // Cleanup: if this screen unmounts before 400ms, cancel the timer
-        // return () => clearTimeout(id);
-    // }, [navigation]);
+        return () => clearTimeout(timer);
+    }, [navigation]);
 
     return (
-        <View style={styles.container}>
-            <ActivityIndicator size="large" />
-            <Text style={styles.muted}>Loading…</Text>
+        <View className='bg-primary flex-1 items-center justify-center'>
+            <View className='bg-white w-[300] h-[300px] rounded-full items-center justify-center'>
+                <Text className='text-primary text-4xl font-bold mb-4'>MedTalk</Text>
+                <Text className='text-[#064448] text-base'>Healthcare Communication</Text>
+            </View>
         </View>
     );
 }
 
-const styles = StyleSheet.create({
-    container: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 8 },
-    muted: { color: '#64748b' },
-});

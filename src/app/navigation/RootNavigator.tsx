@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import LoginScreen from '../../features/auth/screens/LoginScreen';
 // import TodoScreen from '../../features/todo/screens/TodoScreen';
 // import CounterScreen from '../../features/counter/screens/CounterScreen';
-// import InitialScreen from '../../features/auth/screens/InitialScreen';
+import InitialScreen from '../../features/auth/screens/InitialScreen';
 import HomeScreen from '../../features/home/screens/HomeScreen';
 import LoginScreen from '@/features/auth/screens/LoginScreen';
 import { Colors } from '@/ui/theme/colors';
@@ -21,9 +21,9 @@ export default function RootNavigator() {
             screenOptions={{
                 headerShown: false,
             }}
-            initialRouteName="Home"
+            initialRouteName="InitialScreen"
         >
-            {/* <Stack.Screen name="InitialScreen" component={InitialScreen} /> */}
+            <Stack.Screen name="InitialScreen" component={InitialScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
             {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
             {/* <Stack.Screen

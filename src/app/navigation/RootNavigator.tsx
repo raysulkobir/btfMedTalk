@@ -4,8 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import LoginScreen from '../../features/auth/screens/LoginScreen';
 // import TodoScreen from '../../features/todo/screens/TodoScreen';
 // import CounterScreen from '../../features/counter/screens/CounterScreen';
-import InitialScreen from '../../features/auth/screens/InitialScreen';
-import HomeScreen from '../../features/home/screens/HomeScreen';
+import InitialScreen from '@/features/auth/screens/InitialScreen';
+import HomeScreen from '@/features/home/screens/HomeScreen';
+import OnBoardingScreen from '@/features/onboarding/screens/onboardingScreen';
 import LoginScreen from '@/features/auth/screens/LoginScreen';
 import { Colors } from '@/ui/theme/colors';
 // import ZakatCalculatorScreen from '../../features/zakatCalculator/screens/ZakatCalculatorScreen';
@@ -24,6 +25,8 @@ export default function RootNavigator() {
             initialRouteName="InitialScreen"
         >
             <Stack.Screen name="InitialScreen" component={InitialScreen} />
+            <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen} />
+
             <Stack.Screen name="Home" component={HomeScreen} />
             {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
             {/* <Stack.Screen

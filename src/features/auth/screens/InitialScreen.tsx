@@ -7,7 +7,7 @@ export default function InitialScreen({ navigation }: Props) {
     useEffect(() => {
         // Simulate loading, then navigate
         const timer = setTimeout(() => {
-            navigation.replace("Home"); // or whatever your first screen is
+            navigation.replace("OnBoardingScreen"); // or whatever your first screen is
         }, 1500);
 
         return () => clearTimeout(timer);

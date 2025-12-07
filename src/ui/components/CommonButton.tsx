@@ -38,7 +38,7 @@ type Props = {
     backgroundColor?: string;
     borderColor?: string;
 
-    // NEW: hover/pressed overrides
+    // hover/pressed overrides
     hoverBackgroundColor?: string;
     hoverTextColor?: string;
     hoverBorderColor?: string;
@@ -85,6 +85,7 @@ const CommonButton = memo(function CommonButton({
     accessibilityLabel,
 }: Props) {
     const sz = SIZE_MAP[size];
+    
 
     // Base (non-interactive) styles computed once
     const baseContainer = useMemo((): ViewStyle => {
@@ -101,22 +102,23 @@ const CommonButton = memo(function CommonButton({
         };
 
         if (variant === 'primary') {
-            base.backgroundColor = backgroundColor || Colors.primary;
+            base.backgroundColor = backgroundColor ?? "red";
             base.borderWidth = 1;
-            base.borderColor = borderColor || Colors.primary;
+            base.borderColor = borderColor ?? Colors.primary;
         } else if (variant === 'outline') {
-            base.backgroundColor = 'transparent';
+            // allow overriding background even for outline
+            base.backgroundColor = backgroundColor ?? 'pink';
             base.borderWidth = 1;
-            base.borderColor = borderColor || Colors.primary;
+            base.borderColor = borderColor ?? Colors.primary;
         } else {
             // ghost
-            base.backgroundColor = 'transparent';
+            base.backgroundColor = backgroundColor ?? 'blue';
             base.borderWidth = 0;
             base.borderColor = 'transparent';
         }
 
         return base;
-    }, [variant, size, fullWidth, backgroundColor, borderColor, sz.radius, sz.padV]);
+    }, [variant, fullWidth, backgroundColor, borderColor, sz.radius, sz.padV]);
 
     const baseLabel = useMemo((): TextStyle => {
         return {
@@ -141,7 +143,6 @@ const CommonButton = memo(function CommonButton({
         }
         if (pressed && pressedBackgroundColor) {
             container.backgroundColor = pressedBackgroundColor;
-            // subtle feedback
             container.transform = [{ scale: 0.99 }];
         }
 
@@ -164,11 +165,13 @@ const CommonButton = memo(function CommonButton({
         return { container, label };
     };
 
+    const resolvedTestID = testID || `CommonButton-${title.replace(/\s+/g, '_')}`;
+
     return (
         <Pressable
             disabled={disabled || loading}
             onPress={onPress}
-            testID={testID}
+            testID={resolvedTestID}
             accessibilityRole="button"
             accessibilityState={{ disabled: disabled || loading, busy: loading }}
             accessibilityLabel={accessibilityLabel || title}
@@ -192,9 +195,14 @@ const CommonButton = memo(function CommonButton({
                                     (interactive.label.color as string) ??
                                     (variant === 'primary' ? Colors.white : Colors.primary)
                                 }
+                                testID={`${resolvedTestID}-loader`}
                             />
                         ) : (
-                            <Text style={[baseLabel, textStyle, interactive.label]} numberOfLines={1}>
+                            <Text
+                                style={[baseLabel, textStyle, interactive.label]}
+                                numberOfLines={1}
+                                testID={`${resolvedTestID}-label`}
+                            >
                                 {title}
                             </Text>
                         )}

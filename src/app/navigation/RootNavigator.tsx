@@ -1,7 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import HomeScreen from '../../features/home/screens/HomeScreen';
-// import LoginScreen from '../../features/auth/screens/LoginScreen';
 // import TodoScreen from '../../features/todo/screens/TodoScreen';
 // import CounterScreen from '../../features/counter/screens/CounterScreen';
 import InitialScreen from '@/features/auth/screens/InitialScreen';
@@ -28,7 +27,7 @@ export default function RootNavigator() {
             <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen} />
 
             <Stack.Screen name="Home" component={HomeScreen} />
-            {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
+            <Stack.Screen name="Login" component={LoginScreen} />
             {/* <Stack.Screen
                 name="guide"
                 component={GuideScreen}

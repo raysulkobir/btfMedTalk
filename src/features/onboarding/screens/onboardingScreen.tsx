@@ -9,7 +9,7 @@ export default function OnBoardingScreen() {
     const navigation = useNavigation<any>();
 
     return (
-        <SafeAreaView className='flex-1 bg-[#F8FAFB]'>
+        <SafeAreaView className='flex-1 bg-appbg'>
             <View className='flex-1 px-4 pb-6'>
                 <View className='flex-1 items-right justify-center'>
                     <Image

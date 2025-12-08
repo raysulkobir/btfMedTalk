@@ -13,6 +13,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        appbg: "#F8FAFB",
         primary: {
           DEFAULT: "#007E85", // main brand color
           50: "#E0F7F8",

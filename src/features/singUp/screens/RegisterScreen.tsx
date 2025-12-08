@@ -6,15 +6,14 @@ import { Button } from "@/ui/components/Button";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { images } from "@/utils/images";
 import { OrDivider } from "@/ui/components/OrDivider";
-import { icons } from "@/utils/icons";
+import { icons } from "../../../utils/icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigation = useNavigation();
-
 
   const handleLogin = () => {
     // handle login logic here
@@ -31,12 +30,19 @@ export default function LoginScreen() {
           resizeMode="contain"  
         />
         <Text className="text-3xl text-center font-bold text-gray-900">
-          Welcome Back
+          Welcome To MedTalk
         </Text>
         
         <Text className="text-base text-gray-500 mb-6 text-center">
-          Sign in to your account
+          Create your account
         </Text>
+
+        <Input
+          placeholder="Full Name"
+          value={email}
+          onChangeText={setEmail}
+          iconName="person-outline"
+        />
 
         <Input
           placeholder="Phone Number"
@@ -49,37 +55,14 @@ export default function LoginScreen() {
           placeholder="Password"
           value={password}
           onChangeText={setPassword}
-          secureTextEntry
           iconName="lock-closed-outline"
         />
-
-        <TouchableOpacity>
-          <Text className="text-primary text-sm font-semibold mb-2 text-right">Forget Password?</Text>
-        </TouchableOpacity>
+        
         <Button
-          title="SIGN IN"
+          title="SIGN UP"
           variant="primary"
-          onPress={handleLogin}
+          onPress={() => navigation.navigate('VerifyPhoneNumber')}
         />
-
-        <OrDivider label="Or" /> 
-
-        <View className="flex-row items-center justify-center gap-9">
-          <View className="flex-row items-center justify-center bg-[#fff] py-2 px-2 rounded-full border-r-primary border-500 border-2 mr-2">
-            <Image source={icons.googleIcon} className="w-4 h-4" />
-          </View>
-          <View className="flex-row items-center justify-center bg-[#fff] py-2 px-2 rounded-full border-r-primary border-500 border-2 mr-2">
-            <Image source={icons.facebookIcon} className="w-4 h-4" />
-          </View>
-          <View className="flex-row items-center justify-center bg-[#fff] py-2 px-2 rounded-full border-r-primary border-500 border-2 mr-2">
-            <Image source={icons.appleIcon} className="w-4 h-4" />
-          </View>
-        </View>
-
-        <View className="flex-row items-center justify-center mt-4">
-          <Text className="text-sm text-gray-500">Don't have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>< Text className="text-sm font-semibold text-primary">Sign Up</Text></TouchableOpacity>
-        </View>
       </View>
     </SafeAreaView>
   );

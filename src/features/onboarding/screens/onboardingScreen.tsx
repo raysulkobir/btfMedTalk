@@ -29,7 +29,7 @@ export default function OnBoardingScreen() {
                 <Button
                     title="SIGN UP"
                     variant="primary"
-                    onPress={() => alert('Login pressed!')}
+                    onPress={() => navigation.navigate('RegisterScreen')}
                 />
             </View>
         </SafeAreaView>
